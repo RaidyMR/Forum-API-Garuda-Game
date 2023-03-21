@@ -59,6 +59,28 @@ describe('ThreadRepositoryPostgres', () => {
             }));
         });
     });
+
+    describe('verifyThreadExists function', () => {
+        it('should throw NotFoundError when thread doesn\'t exist with the given thread id', async () => {
+            //arrange
+            const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
+            await ThreadsTableTestHelper.cleanTable();
+            await ThreadsTableTestHelper.addThread({id: 'thread-123'});
+
+            //action and assert
+            await expect(threadRepositoryPostgres.verifyThreadExists('thread-1234')).rejects.toThrowError('Thread tidak ditemukan');            
+        });
+    
+        it('should not throw any error when thread exists', async () => {
+            //arrange
+            const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
+            await ThreadsTableTestHelper.addThread({id: 'thread-123'});
+
+            //action and assert
+            await expect(threadRepositoryPostgres.verifyThreadExists('thread-123')).resolves.not.toThrowError();            
+             
+        });
+    });
 });
 
 

@@ -20,6 +20,10 @@ exports.up = pgm => {
         type: 'VARCHAR(50)',
         notNull: true,
         },
+        isDelete: {
+        type: 'BOOLEAN',
+        default: false,
+        },
     });
     
     pgm.addConstraint('comments', 'fk_comments.owner_users.id', 'FOREIGN KEY(owner) REFERENCES users(id) ON DELETE CASCADE');
