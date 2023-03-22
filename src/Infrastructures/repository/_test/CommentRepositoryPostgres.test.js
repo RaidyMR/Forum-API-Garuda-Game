@@ -7,10 +7,10 @@ const AuthorizationError = require('../../../Commons/exceptions/AuthorizationErr
 const Comment = require('../../../Domains/comments/entities/Comment');
 const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
 
-describe('CommentRepositoryPostgres', () => {  
+describe('CommentRepositoryPostgres', () => {
   beforeAll(async () => {
-      await UsersTableTestHelper.cleanTable();
-      await UsersTableTestHelper.addUser({});
+    await UsersTableTestHelper.cleanTable();
+    await UsersTableTestHelper.addUser({});
   });
 
   beforeEach(async () => {
@@ -31,7 +31,7 @@ describe('CommentRepositoryPostgres', () => {
 
   describe('addComment function', () => {
     it('should persist add comment and return added comment correctly', async () => {
-      //Arrange
+      // Arrange
       const newComment = {
         content: 'content',
         userId: 'user-123',
@@ -40,10 +40,10 @@ describe('CommentRepositoryPostgres', () => {
       const fakeIdGenerator = () => '123';
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
 
-      //Action
+      // Action
       await commentRepositoryPostgres.addComment(newComment);
 
-      //Assert
+      // Assert
       const comments = await CommentsTableTestHelper.findCommentsById('comment-123');
       expect(comments).toHaveLength(1);
     });
@@ -57,10 +57,10 @@ describe('CommentRepositoryPostgres', () => {
       });
       const fakeIdGenerator = () => '123'; // stub!
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
-  
+
       // Action
       const addedComment = await commentRepositoryPostgres.addComment(newComment);
-  
+
       // Assert
       expect(addedComment).toStrictEqual({
         id: 'comment-123',
@@ -152,4 +152,3 @@ describe('CommentRepositoryPostgres', () => {
     });
   });
 });
-

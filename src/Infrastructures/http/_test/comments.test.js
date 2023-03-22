@@ -8,11 +8,12 @@ const createServer = require('../createServer');
 describe('/threads/threadId/comments endpoint', () => {
   let token = '';
   let thread = {};
-  
+  let comment = {};
+
   beforeAll(async () => {
     const requestPayload = {
-        username: 'dicoding',
-        password: 'secret',
+      username: 'dicoding',
+      password: 'secret',
     };
     const server = await createServer(container);
     // add user
@@ -27,14 +28,14 @@ describe('/threads/threadId/comments endpoint', () => {
     });
     // Action
     const response = await server.inject({
-        method: 'POST',
-        url: '/authentications',
-        payload: requestPayload,
-      });
-  
-      // Assert
-      const responseJson = JSON.parse(response.payload);
-      token = responseJson.data.accessToken;
+      method: 'POST',
+      url: '/authentications',
+      payload: requestPayload,
+    });
+
+    // Assert
+    const responseJson = JSON.parse(response.payload);
+    token = responseJson.data.accessToken;
   });
 
   afterAll(async () => {
@@ -74,8 +75,8 @@ describe('/threads/threadId/comments endpoint', () => {
         url: `/threads/${thread.id}/comments`,
         payload: commentRequestPayload,
         headers: { Authorization: `Bearer ${token}` },
-    });
-    
+      });
+
       const commentResponseJson = JSON.parse(commentResponse.payload);
       comment = commentResponseJson.data.addedComment;
       expect(commentResponse.statusCode).toEqual(201);

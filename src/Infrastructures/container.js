@@ -20,7 +20,6 @@ const CommentRepositoryPostgres = require('./repository/CommentRepositoryPostgre
 const ReplyRepository = require('../Domains/replies/ReplyRepository');
 const ReplyRepositoryPostgres = require('./repository/ReplyRepositoryPostgres');
 
-
 // use case
 const AddUserUseCase = require('../Applications/use_case/AddUserUseCase');
 const AuthenticationTokenManager = require('../Applications/security/AuthenticationTokenManager');
@@ -103,7 +102,7 @@ container.register([
       ],
     },
   },
-   {
+  {
     key: CommentRepository.name,
     Class: CommentRepositoryPostgres,
     parameter: {
@@ -116,7 +115,7 @@ container.register([
         },
       ],
     },
-  }, 
+  },
   {
     key: CommentRepository.name,
     Class: CommentRepositoryPostgres,
@@ -141,10 +140,10 @@ container.register([
         },
         {
           concrete: nanoid,
-        }
-      ]
-    }
-  }
+        },
+      ],
+    },
+  },
 ]);
 
 // registering use cases

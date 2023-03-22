@@ -25,7 +25,7 @@ const RepliesTableTestHelper = {
     const { rows } = await pool.query(query);
 
     return rows;
-  }
+  },
 };
 
 module.exports = RepliesTableTestHelper;

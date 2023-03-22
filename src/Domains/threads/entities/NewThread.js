@@ -1,24 +1,24 @@
 class newThread {
-    constructor(payload) {
-        this._verifyPayload(payload);
+  constructor(payload) {
+    this._verifyPayload(payload);
 
-        const { title, body, userId } = payload;
+    const { title, body, userId } = payload;
 
-        this.title = title;
-        this.body = body;
-        this.userId = userId;
+    this.title = title;
+    this.body = body;
+    this.userId = userId;
+  }
+
+  _verifyPayload(payload) {
+    const { title, body, userId } = payload;
+    if (!title || !body || !userId) {
+      throw new Error('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
-    _verifyPayload(payload) {
-        const { title, body, userId } = payload;
-        if (!title || !body || !userId) {
-            throw new Error('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
-        }
-
-        if (typeof title !== 'string' || typeof body !== 'string' || typeof userId !== 'string') {
-            throw new Error('NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
-        }
+    if (typeof title !== 'string' || typeof body !== 'string' || typeof userId !== 'string') {
+      throw new Error('NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
+  }
 }
 
 module.exports = newThread;

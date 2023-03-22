@@ -67,7 +67,7 @@ describe('/threads endpoint', () => {
 
       // Assert
       const responseJson = JSON.parse(response.payload);
-      thread = responseJson.data.addedThread;
+
       expect(response.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedThread).toBeDefined();
@@ -102,7 +102,7 @@ describe('/threads endpoint', () => {
       // Arrange
       // eslint-disable-next-line no-undef
       const server = await createServer(container);
-      await UsersTableTestHelper.addUser({username: 'didicoding'});
+      await UsersTableTestHelper.addUser({ username: 'didicoding' });
       await ThreadsTableTestHelper.addThread({});
       await CommentsTableTestHelper.addComment({});
       await RepliesTableTestHelper.addReply({});

@@ -13,6 +13,7 @@ class CommentHandler {
     const addCommentUseCase = this._container.getInstance(AddCommentUseCase.name);
     const { threadId } = params;
 
+    // eslint-disable-next-line max-len
     const addedComment = await addCommentUseCase.execute({ ...payload, threadId }, auth.credentials.id);
 
     return h.response({
