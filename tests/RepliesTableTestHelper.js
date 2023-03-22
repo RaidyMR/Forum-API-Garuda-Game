@@ -25,16 +25,7 @@ const RepliesTableTestHelper = {
     const { rows } = await pool.query(query);
 
     return rows;
-  },
-
-  async softDeleteReplyById(replyId) {
-    const query = {
-      text: 'UPDATE replies SET "isDelete" = true WHERE id = $1',
-      values: [replyId],
-    };
-
-    await pool.query(query);
-  },
+  }
 };
 
 module.exports = RepliesTableTestHelper;

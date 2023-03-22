@@ -143,6 +143,15 @@ describe('ThreadRepositoryPostgres', () => {
               .rejects
               .toThrowError(NotFoundError);
         });
+
+        it('should return empty comments when no comments', async () => {
+            const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
+            await ThreadsTableTestHelper.addThread({id: 'thread-123'});
+            
+            const detailThread = await threadRepositoryPostgres.getDetailThread('thread-123');
+            
+            expect(detailThread.comments).toStrictEqual([]);
+        });
     });
 });
 
