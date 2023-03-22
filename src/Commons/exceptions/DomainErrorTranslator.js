@@ -23,6 +23,10 @@ DomainErrorTranslator._directories = {
   'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat comment baru karena properti yang dibutuhkan tidak ada'),
   'DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_ATTRIBUTE': new InvariantError('tidak dapat menghapus comment karena data tidak lengkap'),
   'DELETE_COMMENT_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat menghapus comment karena tipe data tidak sesuai'),
+  'ADD_REPLY_USE_CASE.NOT_CONTAIN_NEEDED_ATTRIBUTE': new InvariantError('tidak dapat menghapus comment karena data tidak lengkap'),
+  'ADD_REPLY_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat menghapus comment karena tipe data tidak sesuai'),
+  'DELETE_REPLY_USE_CASE.NOT_CONTAIN_NEEDED_ATTRIBUTE': new InvariantError('tidak dapat menghapus comment karena data tidak lengkap'),
+  'DELETE_REPLY_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat menghapus comment karena tipe data tidak sesuai'),
 };
 
 module.exports = DomainErrorTranslator;

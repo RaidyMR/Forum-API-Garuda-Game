@@ -7,11 +7,11 @@ const routes = (handler) => ([
       auth: 'forumapi_jwt',
     },
   },
-  // {
-  //   method: 'GET',
-  //   path: '/threads/{threadId}',
-  //   handler: handler.getThreadDetailsHandler,
-  // },
+  {
+    method: 'GET',
+    path: '/threads/{threadId}',
+    handler: handler.getDetailThreadHandler,
+  },
 ]);
   
   module.exports = routes;

@@ -7,11 +7,11 @@ const CommentsTableTestHelper = {
   },
 
   async addComment({
-    id = 'comment-123', content = 'sebuah comment', userId = 'user-123', threadId = 'thread-123'
+    id = 'comment-123', content = 'sebuah comment', userId = 'user-123', threadId = 'thread-123', isDelete = false, date = new Date().toISOString(),
   }) {
     const query = {
-      text: 'INSERT INTO comments(id, content, owner, "thread_id", "isDelete") VALUES($1, $2, $3, $4, false) RETURNING id, content, owner',
-      values: [id, content, userId, threadId],
+      text: 'INSERT INTO comments(id, content, owner, "thread_id", "isDelete", date) VALUES($1, $2, $3, $4, $5, $6) RETURNING id, content, owner',
+      values: [id, content, userId, threadId, isDelete, date],
     };
 
     await pool.query(query);
