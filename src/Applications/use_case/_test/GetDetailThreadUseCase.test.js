@@ -4,6 +4,7 @@ const GetDetailThreadUseCase = require('../GetDetailThreadUseCase');
 describe('GetDetailThreadUseCase', () => {
   it('should orchestrating the get detail thread action correctly', async () => {
     // arrange
+    // eslint-disable-next-line no-promise-executor-return
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const date = [];
     date.push(new Date().toISOString());
