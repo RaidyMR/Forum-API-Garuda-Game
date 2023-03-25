@@ -33,6 +33,12 @@ describe('GetDetailThreadUseCase', () => {
               date: date[0],
               content: '**balasan telah dihapus**',
             },
+            {
+              id: 'reply-456',
+              username: 'dicoding',
+              date: date[1],
+              content: 'sebuah balasan',
+            },
           ],
         },
         {
@@ -67,6 +73,13 @@ describe('GetDetailThreadUseCase', () => {
                 date: date[0],
                 content: 'sebuah balasan',
                 deleted: true,
+              },
+              {
+                id: 'reply-456',
+                username: 'dicoding',
+                date: date[1],
+                content: 'sebuah balasan',
+                deleted: false,
               },
             ],
           },
