@@ -140,7 +140,6 @@ describe('ThreadRepositoryPostgres', () => {
 
       // action
       const detailThread = await threadRepositoryPostgres.getDetailThread('thread-123');
-      console.log(detailThread);
       // assert
       expect(detailThread).toStrictEqual(expectedDetailThread);
     });
