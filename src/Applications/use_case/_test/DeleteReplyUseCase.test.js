@@ -58,5 +58,8 @@ describe('DeleteReplyUseCase', () => {
       .toHaveBeenCalledWith(useCasePayload);
     expect(mockReplyRepository.verifyReplyOwner)
       .toHaveBeenCalledWith(useCasePayload.replyId, useCasePayload.userId);
+
+    expect(await deleteReplyUseCase.execute(useCasePayload))
+      .toEqual({ status: 'success' });
   });
 });

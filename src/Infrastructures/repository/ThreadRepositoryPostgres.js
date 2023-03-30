@@ -62,46 +62,7 @@ class ThreadRepositoryPostgres extends ThreadRepository {
       throw new NotFoundError('Thread tidak ditemukan');
     }
 
-    const {
-      tid: id, title, body, tdate: date, username,
-    } = result.rows[0];
-
-    const replies = result.rows.reduce((group, item) => {
-      const {
-        id: commentId, rid, rname, rdate, rcontent, rdeleted,
-      } = item;
-      group[commentId] = group[commentId] ?? [];
-      if (rid) {
-        group[commentId].push({
-          id: rid, username: rname, date: rdate, content: rcontent, deleted: rdeleted,
-        });
-      }
-      return group;
-    }, {});
-
-    let comments = result.rows.map((item) => {
-      if (item.id) {
-        return ({
-          id: item.id,
-          username: item.cname,
-          date: item.date,
-          content: item.content,
-          deleted: item.cdeleted,
-          replies: replies[item.id],
-        });
-      }
-      return {};
-    });
-
-    comments = comments.length === 1 && Object.keys(comments[0]).length === 0 ? [] : comments;
-
-    comments = comments.filter((value, index, self) => index === self.findIndex((t) => (
-      t.id === value.id
-    )));
-
-    return {
-      id, title, body, date, username, comments,
-    };
+    return result.rows;
   }
 }
 

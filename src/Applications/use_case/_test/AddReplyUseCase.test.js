@@ -18,11 +18,9 @@ describe('AddReplyUseCase', () => {
       owner: useCasePayload.userId,
     };
 
-    /** creating dependency of use case */
     const mockReplyRepository = new ReplyRepository();
     const mockCommentRepository = new CommentRepository();
 
-    /** mocking needed function */
     mockReplyRepository.addReply = jest.fn()
       .mockImplementation(() => Promise.resolve({
         id: 'reply-123',
@@ -32,9 +30,10 @@ describe('AddReplyUseCase', () => {
 
     mockCommentRepository.verifyCommentExists = jest
       .fn()
-      .mockImplementation(() => Promise.resolve());
+      .mockImplementation(() => Promise.resolve({
+        id: 'comment-123',
+      }));
 
-    /** creating use case instance */
     const getReplyUseCase = new AddReplyUseCase({
       replyRepository: mockReplyRepository,
       commentRepository: mockCommentRepository,
