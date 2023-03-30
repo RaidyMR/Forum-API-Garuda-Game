@@ -40,7 +40,9 @@ describe('DeleteCommentUseCase', () => {
 
     const mockCommentRepository = new CommentRepository();
     mockCommentRepository.verifyCommentExists = jest.fn()
-      .mockImplementation(() => Promise.resolve());
+      .mockImplementation(() => Promise.resolve({
+        id: 'comment-1',
+      }));
     mockCommentRepository.verifyCommentOwner = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockCommentRepository.softDeleteComment = jest.fn()
@@ -63,5 +65,7 @@ describe('DeleteCommentUseCase', () => {
         useCasePayload.commentId,
         useCasePayload.ownerId,
       );
+    expect(await deleteCommentUseCase.execute(useCasePayload))
+      .toEqual({ status: 'success' });
   });
 });
