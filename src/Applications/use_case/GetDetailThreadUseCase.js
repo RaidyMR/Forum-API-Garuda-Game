@@ -83,9 +83,6 @@ class GetDetailThreadUseCase {
       t.id === value.id
     )));
 
-    console.log({
-      id, title, body, date, username, comments,
-    });
     return {
       id, title, body, date, username, comments,
     };

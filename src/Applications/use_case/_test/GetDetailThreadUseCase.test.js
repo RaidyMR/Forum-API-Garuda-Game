@@ -125,4 +125,43 @@ describe('GetDetailThreadUseCase', () => {
     expect(mockThreadRepository.getDetailThread).toBeCalledTimes(1);
     expect(detailThread).toStrictEqual(expectedDetailThread);
   });
+
+  it('should return empty comment when there is no comment', async () => {
+    const date = new Date().toISOString();
+    const useCasePayload = {
+      threadId: 'thread-123',
+    };
+
+    const mockThreadRepository = new ThreadRepository();
+    mockThreadRepository.getDetailThread = jest.fn()
+      .mockImplementation(() => Promise.resolve([
+        {
+          tid: 'thread-123',
+          title: 'sebuah title',
+          body: 'sebuah body',
+          tdate: date,
+          username: 'dicoding',
+          id: null,
+          cname: null,
+          date: null,
+          content: null,
+          thread_id: null,
+          cdeleted: true,
+          rid: null,
+          rname: null,
+          rdate: null,
+          rcontent: null,
+          rdeleted: null,
+          comment_id: null,
+        },
+      ]));
+
+    const getDetailThreadUseCase = new GetDetailThreadUseCase({
+      threadRepository: mockThreadRepository,
+    });
+
+    const detailThread = await getDetailThreadUseCase.execute(useCasePayload);
+
+    expect(detailThread.comments).toStrictEqual([]);
+  });
 });
